@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+    <title>Patient Registration</title>
+    <!-- <link rel="stylesheet"
+        href="css/font-awesome.min.css"> -->
+    <link rel="stylesheet"
+        href="css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="topbar d-flex justify-content-between align-middle align-items-center">
+            <button class="btn btn-primary mb-3"
+                id="newPatientBtn"
+                onclick="newPatient();">Register New
+                Patient</button>
+
+        </div>
+        <table class="table table-striped table-bordered"
+            id="patientDetails">
+            <thead class="table-head">
+                <tr>
+                    <th class="table-head-item"
+                        colspan="2">Patient Details</th>
+            <tbody id="patientdata">
+                <tr id="tr1"></tr>
+                <tr id="tr2"></tr>
+                <tr id="tr3"></tr>
+                <tr id="tr4"></tr>
+                <tr id="tr5"></tr>
+                <tr id="tr6"></tr>
+                <tr id="tr7"></tr>
+                <tr id="tr8"></tr>
+                <tr id="tr9"></tr>
+                <tr id="tr10"></tr>
+                <tr id="tr11"></tr>
+                <tr id="tr12"></tr>
+                <tr id="tr13"></tr>
+                <tr id="tr14"></tr>
+                <tr id="tr15"></tr>
+                <tr id="tr16"></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for New Patient-->
+    <div class="modal "
+        id="newPatientModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="newPatientModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"
+                        id="newPatientModalLabel">Patient Registration Page 1/4</h2>
+                    <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onclick="close1()">
+                        <span id="close"
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="patientForm">
+                        <div class="form-group">
+                            <label for="patientName">Patient Full Name</label>
+                            <input type="text"
+                                name="patientName"
+                                id="patientName"
+                                class="form-control">
+                            <span class="error"
+                                id="patientNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientAge">Age</label>
+                            <input type="number"
+                                name="patientAge"
+                                id="patientAge"
+                                class="form-control">
+                            <span class="error"
+                                id="patientAgeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientGender">Gender</label>
+                            <input type="Radio"
+                                name="patientGender"
+                                id="patientGenderM"
+                                class="form-Radio"
+                                value="Male">Male
+                            <input type="Radio"
+                                name="patientGender"
+                                id="patientGenderF"
+                                class="form-Radio"
+                                value="Female">Female
+                            <input type="Radio"
+                                name="patientGender"
+                                id="patientGenderO"
+                                class="form-Radio"
+                                value="Other">Other
+                            <br><span class="error"
+                                id="patientGenderError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientContact">Contact Number</label>
+                            <input type="number"
+                                name="patientContact"
+                                id="patientContact"
+                                class="form-control">
+                            <span class="error"
+                                id="patientContactError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientImage">Patient Image</label>
+                            <input type="file"
+                                name="patientImage"
+                                id="patientImage"
+                                class="form-control"
+                                accept="image/*">
+                            <span class="error"
+                                id="patientImageError"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                onclick="close1()">Close</button>
+                            <button type="button"
+                                class="btn btn-primary"
+                                id="NextBtn1"
+                                onclick="ShowModal2()">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for New Patient Address-->
+    <div class="modal "
+        id="patientModal2"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="patientModal2Label"
+        aria-hidden="true">
+        <div class="modal-dialog"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"
+                        id="patientModal2Label">Patient Registration Page 2/4</h2>
+                    <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onclick="close1()">
+                        <span id="close"
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="patientForm">
+                        <div class="form-group">
+                            <label for="patientAddress1"> Address Line 1</label>
+                            <input type="text"
+                                name="patientAddress1"
+                                id="patientAddress1"
+                                class="form-control">
+                            <span class="error"
+                                id="patientAddress1Error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientAddress2"> Address Line 2</label>
+                            <input type="text"
+                                name="patientAddress2"
+                                id="patientAddress2"
+                                class="form-control">
+                            <span class="error"
+                                id="patientAddress2Error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientPincode">Pincode</label>
+                            <input type="number"
+                                name="patientPincode"
+                                id="patientPincode"
+                                class="form-control">
+                            <span class="error"
+                                id="patientPincodeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientCity">City</label>
+                            <input type="text"
+                                name="patientCity"
+                                id="patientCity"
+                                class="form-control">
+                            <span class="error"
+                                id="patientCityError"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                onclick="close1()">Close</button>
+                            <button type="button"
+                                class="btn btn-primary"
+                                id="NextBtn2"
+                                onclick="ShowModal3()">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for New Patient History-->
+    <div class="modal "
+        id="patientModal3"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="patientModal3Label"
+        aria-hidden="true">
+        <div class="modal-dialog"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"
+                        id="patientModal3Label">Patient Registration Page 3/4</h2>
+                    <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onclick="close1()">
+                        <span id="close"
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="patientForm">
+                        <div class="form-group">
+                            <label for="patientChronic">Chronic Illness</label>
+                            <input type="text"
+                                name="patientChronic"
+                                id="patientChronic"
+                                class="form-control">
+                            <span class="error"
+                                id="patientChronicError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientCMed">Chronic Medicenes</label>
+                            <input type="text"
+                                name="patientCMed"
+                                id="patientCMed"
+                                class="form-control">
+                            <span class="error"
+                                id="patientCMedError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientHistory">History</label>
+                            <textarea id="patientHistory"
+                                name="patientHistory"
+                                rows="3"
+                                cols="60"
+                                class="form-control"></textarea>
+                            <span class="error"
+                                id="patientHistoryError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientFHistory">Family History</label>
+                            <textarea id="patientFHistory"
+                                name="patientFHistory"
+                                rows="3"
+                                cols="60"
+                                class="form-control"></textarea>
+                            <span class="error"
+                                id="patientFHistoryError"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                onclick="close1()">Close</button>
+                            <button type="button"
+                                class="btn btn-primary"
+                                id="NextBtn2"
+                                onclick="ShowModal4()">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for New Patient Appointment/case-->
+    <div class="modal "
+        id="patientModal4"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="patientModal4Label"
+        aria-hidden="true">
+        <div class="modal-dialog"
+            role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"
+                        id="patientModal4Label">Patient Registration Page 4/4</h2>
+                    <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onclick="close1()">
+                        <span id="close"
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="patientForm">
+                        <div class="form-group">
+                            <label for="PresentIllness"> Present Illness</label>
+                            <input type="text"
+                                name="PresentIllness"
+                                id="PresentIllness"
+                                class="form-control">
+                            <span class="error"
+                                id="PresentIllnessError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="AppointmentDate">Appointment Date</label>
+                            <input type="date"
+                                name="AppointmentDate"
+                                id="AppointmentDate"
+                                class="form-control">
+                            <span class="error"
+                                id="AppointmentDateError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="CaseCharge">Case Charge</label>
+                            <input type="number"
+                                name="CaseCharge"
+                                id="CaseCharge"
+                                class="form-control">
+                            <span class="error"
+                                id="CaseChargeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="Doctor">Patient of</label>
+                            <select name="Doctor"
+                                id="Doctor">
+                                <option disabled
+                                    selected>Select Doctor Name</option>
+                                <option value="Doctor 1">Doctor 1</option>
+                                <option value="Doctor 2">Doctor 2</option>
+                                <option value="Doctor 3">Doctor 3</option>
+                            </select>
+                            <span class="error"
+                                id="DoctorError"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                onclick="close1()">Close</button>
+                            <button type="button"
+                                class="btn btn-primary"
+                                id="NextBtn2"
+                                onclick="ShowData()">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+    <script src="js/warnings.js"></script>
+
+</body>
+
+</html>
