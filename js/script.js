@@ -27,6 +27,11 @@ function newPatient() {
 // After data input in modal 1
 function ShowModal2() {
     pdata = {}
+    phregex = /^[6-9][0-9]{9}/
+    nameregex = /^[a-zA-Z][a-zA-Z\s]{3,}/
+    ageregex = /^[0-9]{1,2}$/
+    // phregex = /^[6-9][0-9]{9}/
+    c = 0
     patientName = document.getElementById("patientName").value;
     patientAge = document.getElementById("patientAge").value;
     genderRadios = document.querySelectorAll('input[name="patientGender"]');
@@ -39,23 +44,37 @@ function ShowModal2() {
     patientContact = document.getElementById("patientContact").value;
     patientImage = document.getElementById("patientImage").value;
 
-    if (patientName == "" || patientImage == "" || patientAge == "" || patientGender == "") {
-        if (patientName == "") {
-            document.getElementById("patientNameError").innerHTML = "Please Enter Patient Name";
-        }
-        if (patientImage == "") {
-            document.getElementById("patientImageError").innerHTML = "No Image Selected";
-        }
-        if (patientAge == "") {
-            document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age";
-        }
-        // if (patientContact) {
-        //     if (patientContact < 6000000000 | patientContact > 9999999999) {
-        //         document.getElementById("patientContactError").innerHTML = "Contact Number Must be 10 digits";
-        //     }
-        // }
+    if (!nameregex.test(patientName)) {
+        document.getElementById("patientNameError").innerHTML = "Please Enter Proper Patient Name ";
+        c = 1
     }
-    else {
+    if (!ageregex.test(patientAge)) {
+        document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age between 0-99";
+        c = 1
+    }
+    if (!phregex.test(patientContact)) {
+        document.getElementById("patientContactError").innerHTML = "Enter appropriate contact number";
+        c = 1
+    }
+    // if (patientName == "" || patientImage == "" || patientAge == "" || patientGender == "") {
+    //     if (patientName == "") {
+    //         document.getElementById("patientNameError").innerHTML = "Please Enter Patient Name";
+    //     }
+    if (patientImage == "") {
+        document.getElementById("patientImageError").innerHTML = "No Image Selected";
+        c = 1
+    }
+    //     if (patientAge == "") {
+    //         document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age";
+    //     }
+    //     // if (patientContact) {
+    //     //     if (patientContact < 6000000000 | patientContact > 9999999999) {
+    //     //         document.getElementById("patientContactError").innerHTML = "Contact Number Must be 10 digits";
+    //     //     }
+    //     // }
+    // }
+    if (c == 0) {
+
         pdata.name = patientName;
         pdata.age = patientAge;
         pdata.gender = patientGender;
@@ -75,22 +94,41 @@ function ShowModal3() {
     patientAddress2 = document.getElementById("patientAddress2").value;
     patientPincode = document.getElementById("patientPincode").value;
     patientCity = document.getElementById("patientCity").value;
+    c = 0
 
-    if (patientAddress1 == "" || patientAddress2 == "" || patientPincode == "" || patientCity == "") {
-        if (patientAddress1 == "") {
-            document.getElementById("patientAddress1Error").innerHTML = "Please Enter Address";
-        }
-        if (patientAddress2 == "") {
-            document.getElementById("patientAddress2Error").innerHTML = "Please Enter Address";
-        }
-        if (patientPincode == "") {
-            document.getElementById("patientPincodeError").innerHTML = "Please Enter Proper PinCode";
-        }
-        if (patientCity == "") {
-            document.getElementById("patientCityError").innerHTML = "Please Enter City Name";
-        }
+    addregex = /^[A-Za-z0-9\s,-]{10,}/
+    pinregex = /^[0-9]{6}$/
+    cityregex = /^[A-Za-z()\s]+$/
+    if (!addregex.test(patientAddress1)) {
+        document.getElementById("patientAddress1Error").innerHTML = "Address Line 1 must be of minimum 10 carachters containing alphabets numbers '-' and ','";
+        c = 1
     }
-    else {
+    if (!addregex.test(patientAddress2)) {
+        document.getElementById("patientAddress2Error").innerHTML = "Address Line 2 must be of minimum 10 carachters containing alphabets numbers '-' and ','";
+        c = 1
+    }
+    if (!pinregex.test(patientPincode)) {
+        document.getElementById("patientPincodeError").innerHTML = "Pincode Must be of 6 digits";
+        c = 1
+    }
+    if (!cityregex.test(patientCity)) {
+        document.getElementById("patientCityError").innerHTML = "Invalid City Name";
+        c = 1
+    }
+    // if (patientAddress1 == "" || patientAddress2 == "" || patientPincode == "" || patientCity == "") {
+    //     if (patientAddress1 == "") {
+    //         document.getElementById("patientAddress1Error").innerHTML = "Please Enter Address";
+    //     }
+    //     if (patientAddress2 == "") {
+    //         document.getElementById("patientAddress2Error").innerHTML = "Please Enter Address";
+    //     }
+    //     if (patientPincode == "") {
+    //     }
+    //     if (patientCity == "") {
+    //         document.getElementById("patientCityError").innerHTML = "Please Enter City Name";
+    //     }
+    // }
+    if (c == 0) {
         pdata.address = patientAddress1 + "," + patientAddress2;
         pdata.pincode = patientPincode;
         pdata.city = patientCity;
@@ -104,25 +142,39 @@ function ShowModal4() {
     patientCMed = document.getElementById("patientCMed").value;
     patientHistory = document.getElementById("patientHistory").value;
     patientFHistory = document.getElementById("patientFHistory").value;
-
-    if (patientHistory == "" || patientFHistory == "") {
-        if (patientHistory == "") {
-            document.getElementById("patientHistoryError").innerHTML = "Please Enter Patient History";
-        }
-        if (patientFHistory == "") {
-            document.getElementById("patientFHistoryError").innerHTML = "Please Enter Family History";
-        }
+    c = 0
+    chregex = /^[A-Za-z0-9\s,]+$/
+    phistoryregex = /^(?=.*\n).*\S.{29,}$/
+    if (!chregex.test(patientChronic)) {
+        document.getElementById("patientChronicError").innerHTML = "Please enter patient's chronic disease and N/A if none";
+        c = 1
     }
-    else {
-        if (patientChronic) {
-            pdata.chronic = patientChronic;
-        }
-        if (patientCMed) {
-            pdata.chMed = patientCMed;
-        }
+    if (!chregex.test(patientCMed)) {
+        document.getElementById("patientCMedError").innerHTML = "Please enter patient's chronic medicines and N/A if none";
+        c = 1
+    }
+    if (patientHistory.length < 30) {
+        document.getElementById("patientHistoryError").innerHTML = "Patient history must be minimum 30 characters";
+        c = 1
+    }
+    if (patientFHistory.length < 30) {
+        document.getElementById("patientFHistoryError").innerHTML = "Patient family history must be minimum 30 characters";
+        c = 1
+    }
+    // if (patientHistory == "" || patientFHistory == "") {
+    //     if (patientHistory == "") {
+    //         document.getElementById("patientHistoryError").innerHTML = "Please Enter Patient History";
+    //     }
+    //     if (patientFHistory == "") {
+    //         document.getElementById("patientFHistoryError").innerHTML = "Please Enter Family History";
+    //     }
+    // }
+    if (c == 0) {
+
+        pdata.chronic = patientChronic;
+        pdata.chMed = patientCMed;
         pdata.history = patientHistory;
         pdata.family = patientFHistory;
-
         m4.display = "block";
         m3.display = "none";
     }
@@ -133,22 +185,28 @@ function ShowData() {
     Doctor = document.getElementById("Doctor").value;
     PresentIllness = document.getElementById("PresentIllness").value;
     AppointmentDate = document.getElementById("AppointmentDate").value;
-
-    if (PresentIllness == "" || AppointmentDate == "" || CaseCharge == "" || Doctor == "") {
-        if (PresentIllness == "") {
-            document.getElementById("PresentIllnessError").innerHTML = "Please Enter Patient's Illness";
-        }
-        if (AppointmentDate == "") {
-            document.getElementById("AppointmentDateError").innerHTML = "Please Select Appointment Date";
-        }
-        if (Doctor == "") {
-            document.getElementById("DoctorError").innerHTML = "Please Select Doctor";
-        }
-        if (CaseCharge == "") {
-            document.getElementById("CaseChargeError").innerHTML = "Please Enter Case Charge";
-        }
+    c = 0
+    PrIllregex = /^.+$/
+    Caseregex = /^[0-9]+$/
+    if (!PrIllregex.test(PresentIllness)) {
+        document.getElementById("PresentIllnessError").innerHTML = "Please Enter Patient's Present Disease/Illness";
+        c = 1
     }
-    else {
+    if (AppointmentDate == "") {
+        document.getElementById("AppointmentDateError").innerHTML = "Please Select Appointment Date";
+        c = 1
+    }
+    if (!Caseregex.test(CaseCharge)) {
+        document.getElementById("CaseChargeError").innerHTML = "Enter Case Charge (in Rupees)";
+        c = 1
+    }
+    if (Doctor == "") {
+        document.getElementById("DoctorError").innerHTML = "Please Select Doctor";
+        c = 1
+    }
+
+
+    if (c == 0) {
         pdata.appointment = AppointmentDate;
         pdata.illness = PresentIllness;
         pdata.doctor = Doctor;
