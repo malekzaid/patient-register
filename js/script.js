@@ -30,7 +30,6 @@ function ShowModal2() {
     phregex = /^[6-9][0-9]{9}/
     nameregex = /^[a-zA-Z][a-zA-Z\s]{3,}/
     ageregex = /^[0-9]{1,2}$/
-    // phregex = /^[6-9][0-9]{9}/
     c = 0
     patientName = document.getElementById("patientName").value;
     patientAge = document.getElementById("patientAge").value;
@@ -56,23 +55,10 @@ function ShowModal2() {
         document.getElementById("patientContactError").innerHTML = "Enter appropriate contact number";
         c = 1
     }
-    // if (patientName == "" || patientImage == "" || patientAge == "" || patientGender == "") {
-    //     if (patientName == "") {
-    //         document.getElementById("patientNameError").innerHTML = "Please Enter Patient Name";
-    //     }
     if (patientImage == "") {
         document.getElementById("patientImageError").innerHTML = "No Image Selected";
         c = 1
     }
-    //     if (patientAge == "") {
-    //         document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age";
-    //     }
-    //     // if (patientContact) {
-    //     //     if (patientContact < 6000000000 | patientContact > 9999999999) {
-    //     //         document.getElementById("patientContactError").innerHTML = "Contact Number Must be 10 digits";
-    //     //     }
-    //     // }
-    // }
     if (c == 0) {
 
         pdata.name = patientName;
@@ -115,19 +101,6 @@ function ShowModal3() {
         document.getElementById("patientCityError").innerHTML = "Invalid City Name";
         c = 1
     }
-    // if (patientAddress1 == "" || patientAddress2 == "" || patientPincode == "" || patientCity == "") {
-    //     if (patientAddress1 == "") {
-    //         document.getElementById("patientAddress1Error").innerHTML = "Please Enter Address";
-    //     }
-    //     if (patientAddress2 == "") {
-    //         document.getElementById("patientAddress2Error").innerHTML = "Please Enter Address";
-    //     }
-    //     if (patientPincode == "") {
-    //     }
-    //     if (patientCity == "") {
-    //         document.getElementById("patientCityError").innerHTML = "Please Enter City Name";
-    //     }
-    // }
     if (c == 0) {
         pdata.address = patientAddress1 + "," + patientAddress2;
         pdata.pincode = patientPincode;
@@ -161,14 +134,6 @@ function ShowModal4() {
         document.getElementById("patientFHistoryError").innerHTML = "Patient family history must be minimum 30 characters";
         c = 1
     }
-    // if (patientHistory == "" || patientFHistory == "") {
-    //     if (patientHistory == "") {
-    //         document.getElementById("patientHistoryError").innerHTML = "Please Enter Patient History";
-    //     }
-    //     if (patientFHistory == "") {
-    //         document.getElementById("patientFHistoryError").innerHTML = "Please Enter Family History";
-    //     }
-    // }
     if (c == 0) {
 
         pdata.chronic = patientChronic;
