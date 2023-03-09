@@ -179,33 +179,54 @@ function ShowData() {
 
         m4.display = "none";
         document.getElementById('patientForm').reset();
-        Show();
+        insertData();
     }
 }
-
-function Show() {
-    document.getElementById("tr1").innerHTML = " <td class='table-head-item'>Full Name</td> <td >" + pdata.name + "</td>";
-    document.getElementById("tr2").innerHTML = "<td class='table-head-item'>Age</td>   <td id=>" + pdata.age + "</td>";
-    document.getElementById("tr3").innerHTML = "<td class='table-head-item'>Gender</td><td id=>" + pdata.gender + "</td>";
-    if (pdata.contact) {
-        document.getElementById("tr4").innerHTML = "<td class='table-head-item'>Mobile Number</td><td id=>" + pdata.contact + "</td>";
-    }
-    document.getElementById("tr5").innerHTML = "<td class='table-head-item'>Image</td><td id=> <img src='data:image/png;base64," + pdata.image + "' height='200px' width='200px' alt='Patient Image'></td>";
-    document.getElementById("tr6").innerHTML = "<td class='table-head-item'>Address</td><td id=>" + pdata.address + "</td>";
-    document.getElementById("tr7").innerHTML = "<td class='table-head-item'>Pin Code</td><td id=>" + pdata.pincode + "</td>";
-    document.getElementById("tr8").innerHTML = "<td class='table-head-item'>City</td><td id=>" + pdata.city + "</td>";
-    if (pdata.chronic) {
-        document.getElementById("tr9").innerHTML = "<td class='table-head-item'>Chronic Illness</td><td id=>" + pdata.chronic + "</td>";
-    }
-    if (pdata.chMed) {
-        document.getElementById("tr10").innerHTML = "<td class='table-head-item'>Chronic Medicinea</td><td id=>" + pdata.chMed + "</td>";
-    }
-    document.getElementById("tr11").innerHTML = "<td class='table-head-item'>Patient History</td><td id=>" + pdata.history + "</td>";
-    document.getElementById("tr12").innerHTML = "<td class='table-head-item'>Family History</td><td id=>" + pdata.family + "</td>";
-    document.getElementById("tr13").innerHTML = "<td class='table-head-item'>Present Illness</td><td id=>" + pdata.illness + "</td>";
-    document.getElementById("tr14").innerHTML = "<td class='table-head-item'>Appoinment Date</td><td id=>" + pdata.appointment + "</td>";
-    document.getElementById("tr15").innerHTML = "<td class='table-head-item'>Doctor</td><td id=>" + pdata.doctor + "</td>";
-    document.getElementById("tr16").innerHTML = "<td class='table-head-item'>Case Charge</td><td id=>" + pdata.charge + "</td>";
+function insertData() {
+    $.ajax({
+        URL: "../insert.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            Name: patientName,
+            Age: patientAge,
+            Gender: patientGender,
+            Contact: patientContact,
+            Image: Imagebin,
+            Address: patientAddress1 + "," + patientAddress2,
+            Pincode: patientPincode,
+            City: patientCity,
+            Chronic: patientChronic,
+            CMed: patientCMed,
+            History: patientHistory,
+            FHistory: patientFHistory,
+            Charge: CaseCharge,
+            Doctor: Doctor,
+            Illness: PresentIllness,
+            Date: AppointmentDate,
+        },
+        success(data) {
+            Show(data);
+        }
+    })
+}
+function Show(data) {
+    document.getElementById("tr1").innerHTML = " <td class='table-head-item'>Full Name</td> <td >" + data.name + "</td>";
+    document.getElementById("tr2").innerHTML = "<td class='table-head-item'>Age</td>   <td id=>" + data.age + "</td>";
+    document.getElementById("tr3").innerHTML = "<td class='table-head-item'>Gender</td><td id=>" + data.gender + "</td>";
+    document.getElementById("tr4").innerHTML = "<td class='table-head-item'>Mobile Number</td><td id=>" + data.contact + "</td>";
+    document.getElementById("tr5").innerHTML = "<td class='table-head-item'>Image</td><td id=> <img src='data:image/png;base64," + data.image + "' height='200px' width='200px' alt='Patient Image'></td>";
+    document.getElementById("tr6").innerHTML = "<td class='table-head-item'>Address</td><td id=>" + data.address + "</td>";
+    document.getElementById("tr7").innerHTML = "<td class='table-head-item'>Pin Code</td><td id=>" + data.pincode + "</td>";
+    document.getElementById("tr8").innerHTML = "<td class='table-head-item'>City</td><td id=>" + data.city + "</td>";
+    document.getElementById("tr9").innerHTML = "<td class='table-head-item'>Chronic Illness</td><td id=>" + data.chronic + "</td>";
+    document.getElementById("tr10").innerHTML = "<td class='table-head-item'>Chronic Medicinea</td><td id=>" + data.chMed + "</td>";
+    document.getElementById("tr11").innerHTML = "<td class='table-head-item'>Patient History</td><td id=>" + data.history + "</td>";
+    document.getElementById("tr12").innerHTML = "<td class='table-head-item'>Family Hiaaastory</td><td id=>" + data.family + "</td>";
+    document.getElementById("tr13").innerHTML = "<td class='table-head-item'>Present Illness</td><td id=>" + data.illness + "</td>";
+    document.getElementById("tr14").innerHTML = "<td class='table-head-item'>Appoinment Date</td><td id=>" + data.appointment + "</td>";
+    document.getElementById("tr15").innerHTML = "<td class='table-head-item'>Doctor</td><td id=>" + data.doctor + "</td>";
+    document.getElementById("tr16").innerHTML = "<td class='table-head-item'>Case Charge</td><td id=>" + data.charge + "</td>";
 
 }
 const fileInput = document.getElementById("patientImage");
