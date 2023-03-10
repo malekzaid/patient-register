@@ -1,7 +1,7 @@
 function blockshow(mh, ms) {
     ms.display = "block";
     mh.display = "none";
-    console.log("her")
+    console.log("herasfhj2");
 }
 
 
