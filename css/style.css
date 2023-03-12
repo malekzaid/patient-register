@@ -177,3 +177,18 @@ input[type="reset"] {
 .image-zoom:hover {
     transform: scale(3);
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: 2.4rem;
+    left: 0;
+    margin-left: 1.2rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 13.2rem;
+    width: auto;
+}
