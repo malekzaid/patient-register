@@ -19,7 +19,7 @@ document.getElementById("patientCMed").onkeyup = removeWarning;
 document.getElementById("patientHistory").onkeyup = removeWarning;
 document.getElementById("patientFHistory").onkeyup = removeWarning;
 document.getElementById("PresentIllness").onkeyup = removeWarning;
-document.getElementById("AppointmentDate").onkeyup = removeWarning;
+document.getElementById("AppointmentDate").onchange = removeWarning;
 document.getElementById("Doctor").onkeyup = removeWarning;
 document.getElementById("CaseCharge").onkeyup = removeWarning;
 document.querySelectorAll('input[name="patientGender"]')[0].onchange = removeGenderWarning;

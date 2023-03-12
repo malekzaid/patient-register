@@ -1,7 +1,18 @@
-
+// let table = new DataTable('#myTable', {
+//     responsive: true,
+//     scrollX: true,
+//     scrollY: 400,
+//     dom: 'Bfrtip',
+//     buttons: [
+//         'colvis'
+//     ]
+// });
+// $(function () {
+//     $('#patientDetails').DataTable();
+// });
 var Imagebin;
 window.onload = Show();
-//add styles of modl to variables
+//add styles of modal to variables
 m1 = document.getElementById('newPatientModal').style;
 m2 = document.getElementById('patientModal2').style;
 m3 = document.getElementById('patientModal3').style;
@@ -34,41 +45,41 @@ function ShowModal2() {
     patientName = document.getElementById("patientName").value;
     patientAge = document.getElementById("patientAge").value;
     genderRadios = document.querySelectorAll('input[name="patientGender"]');
-    // if (document.querySelector('input[name="patientGender"]:checked')) {
-    //     patientGender = document.querySelector('input[name="patientGender"]:checked').value;
-    // }
-    // else {
-    //     document.getElementById("patientGenderError").innerHTML = "Please Select Appropriate Gender of Patient";
-    // }
-    // patientContact = document.getElementById("patientContact").value;
-    // patientImage = document.getElementById("patientImage").value;
+    if (document.querySelector('input[name="patientGender"]:checked')) {
+        patientGender = document.querySelector('input[name="patientGender"]:checked').value;
+    }
+    else {
+        document.getElementById("patientGenderError").innerHTML = "Please Select Appropriate Gender of Patient";
+    }
+    patientContact = document.getElementById("patientContact").value;
+    patientImage = document.getElementById("patientImage").value;
 
-    // if (!nameregex.test(patientName)) {
-    //     document.getElementById("patientNameError").innerHTML = "Please Enter Proper Patient Name ";
-    //     c = 1;
-    // }
-    // if (!ageregex.test(patientAge)) {
-    //     document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age between 0-99";
-    //     c = 1;
-    // }
-    // if (!phregex.test(patientContact)) {
-    //     document.getElementById("patientContactError").innerHTML = "Enter appropriate contact number";
-    //     c = 1;
-    // }
-    // if (patientImage == "") {
-    //     document.getElementById("patientImageError").innerHTML = "No Image Selected";
-    //     c = 1;
-    // }
+    if (!nameregex.test(patientName)) {
+        document.getElementById("patientNameError").innerHTML = "Please Enter Proper Patient Name ";
+        c = 1;
+    }
+    if (!ageregex.test(patientAge)) {
+        document.getElementById("patientAgeError").innerHTML = "Please Enter Patient Age between 0-99";
+        c = 1;
+    }
+    if (!phregex.test(patientContact)) {
+        document.getElementById("patientContactError").innerHTML = "Enter appropriate contact number";
+        c = 1;
+    }
+    if (patientImage == "") {
+        document.getElementById("patientImageError").innerHTML = "No Image Selected";
+        c = 1;
+    }
     if (c == 0) {
 
-        // pdata.name = patientName;
-        // pdata.age = patientAge;
-        // pdata.gender = patientGender;
-        // pdata.contact = patientContact;
-        // pdata.image = Imagebin;
+        pdata.name = patientName;
+        pdata.age = patientAge;
+        pdata.gender = patientGender;
+        pdata.contact = patientContact;
+        pdata.image = Imagebin;
         // insertData();
-        Show();
-        // m2.display = "block";
+        // Show();
+        m2.display = "block";
         m1.display = "none";
     }
 }
@@ -177,37 +188,15 @@ function ShowData() {
         pdata.charge = CaseCharge;
 
         m4.display = "none";
-        console.log('afwsedrftgh');
         insertData();
-        console.log('bbbbbbfwsedrftgh');
-
         document.getElementById('patientForm').reset();
     }
 }
 function insertData() {
-    console.log("here1");
-    console.log(patientName);
-    // let data = {
-    //     Name: patientName,
-    //     Age: patientAge,
-    //     Gender: patientGender,
-    //     Contact: patientContact,
-    //     Image: Imagebin,
-    //     Address: patientAddress1 + "," + patientAddress2,
-    //     Pincode: patientPincode,
-    //     City: patientCity,
-    //     Chronic: patientChronic,
-    //     CMed: patientCMed,
-    //     History: patientHistory,
-    //     FHistory: patientFHistory,
-    //     Charge: CaseCharge,
-    //     Doctor: Doctor,
-    //     Illness: PresentIllness,
-    //     Date: AppointmentDate
-    // }
+
     $.ajax({
         method: "POST",
-        url: "/insert.php",
+        url: "insert.php",
         dataType: "json",
         data: pdata,
         success: function (data) {
@@ -227,37 +216,37 @@ function insertData() {
 function Show() {
     $.ajax({
         method: "POST",
-        url: "/getdata.php",
-        // dataType: "json",
-        // data: pdata,
+        url: "getdata.php",
+
         success: function (n) {
-
-            // debugger;
-            // console.log(data);
-            d = JSON.parse(n)
+            d = JSON.parse(n);
             patienttable = document.querySelector(".table tbody");
-            // console.log(products.sort((a, b) => b.name.localeCompare(a.name)))
             patienttable.innerHTML = "";
-            d.forEach((data) => {
 
+            d.forEach((data) => {
                 tr = document.createElement("tr");
-                console.log(data);
                 td = document.createElement("td");
                 td.textContent = data.PatientName;
+                td.className = "td-center";
                 tr.appendChild(td);
                 td = document.createElement("td");
                 td.textContent = data.PatientAge;
+                td.className = "td-center";
                 tr.appendChild(td);
                 td = document.createElement("td");
                 td.textContent = data.PatientGender;
+                td.className = "td-center";
                 tr.appendChild(td);
                 td = document.createElement("td");
                 td.textContent = data.PatientContact;
+                td.className = "td-center";
                 tr.appendChild(td);
                 td = document.createElement("td");
+                td.className = "td-center";
                 tr.appendChild(td);
                 const imageDataURL = "data:image/png;base64," + data.PatientImage;
                 imgtag = document.createElement("img");
+                imgtag.className = "image-zoom";
                 imgtag.src = imageDataURL;
                 td.appendChild(imgtag)
                 td = document.createElement("td");
@@ -293,67 +282,35 @@ function Show() {
                 td = document.createElement("td");
                 td.textContent = data.Doctor;
                 tr.appendChild(td);
-                // td.textContent = data.PatientName;
-                // tdProductName = document.createElement("td");
-                // tdProductName.textContent = product.name;
-                // tr.appendChild(tdProductName);
 
-                // const imageDataURL = "data:image/png;base64," + product.image;
-                // tdProductImage = document.createElement("td");
-                // // tdProductImage.textContent = product.image;
-                // tr.appendChild(tdProductImage);
-                // imgtag = document.createElement("img");
-                // imgtag.src = imageDataURL;
-                // tdProductImage.appendChild(imgtag);
+                tdUpdateButton = document.createElement("td");
+                tr.appendChild(tdUpdateButton);
+                // create an update button element
+                btnupdate = document.createElement("button");
+                btnupdate.textContent = "Update";
+                btnupdate.className = "btn btnupdate";
+                btnupdate.id = data.PatientId;
+                // btnupdate.onclick = updatePatient;
+                tdUpdateButton.appendChild(btnupdate);
 
-                // tdProductPrice = document.createElement("td");
-                // tdProductPrice.textContent = product.price;
-                // tr.appendChild(tdProductPrice);
-
-                // tdProductDescription = document.createElement("td");
-                // tdProductDescription.textContent = product.description;
-                // tr.appendChild(tdProductDescription);
-
-                // tdUpdateButton = document.createElement("td");
-                // tr.appendChild(tdUpdateButton);
-                // btnupdate = document.createElement("button");
-                // btnupdate.textContent = "Update";
-                // btnupdate.className = "btn btnupdate";
-                // btnupdate.id = product.id;
-                // btnupdate.onclick = updateProduct
-                // tdUpdateButton.appendChild(btnupdate);
-
+                // // create a delete button element
                 // btndelete = document.createElement("button");
                 // btndelete.textContent = "Delete";
                 // btndelete.className = "btn btndelete";
-                // btndelete.id = product.id
-                // btndelete.onclick = deleteProduct
+                // btndelete.id = data.PatientId;
+                // btndelete.onclick = deletePatient;
                 // tdUpdateButton.appendChild(btndelete);
+
 
                 patienttable.appendChild(tr);
             });
+            $('#patientDetails').DataTable();
 
         },
         error: function (data) {
             window.alert(" Failed");
         }
     });
-    // document.getElementById("tr1").innerHTML = " <td class='table-head-item'>Full Name</td> <td >" + data + "</td>";
-    // document.getElementById("tr2").innerHTML = "<td class='table-head-item'>Age</td>   <td id=>" + data.age + "</td>";
-    // document.getElementById("tr3").innerHTML = "<td class='table-head-item'>Gender</td><td id=>" + data.gender + "</td>";
-    // document.getElementById("tr4").innerHTML = "<td class='table-head-item'>Mobile Number</td><td id=>" + data.contact + "</td>";
-    // document.getElementById("tr5").innerHTML = "<td class='table-head-item'>Image</td><td id=> <img src='data:image/png;base64," + data.image + "' height='200px' width='200px' alt='Patient Image'></td>";
-    // document.getElementById("tr6").innerHTML = "<td class='table-head-item'>Address</td><td id=>" + data.address + "</td>";
-    // document.getElementById("tr7").innerHTML = "<td class='table-head-item'>Pin Code</td><td id=>" + data.pincode + "</td>";
-    // document.getElementById("tr8").innerHTML = "<td class='table-head-item'>City</td><td id=>" + data.city + "</td>";
-    // document.getElementById("tr9").innerHTML = "<td class='table-head-item'>Chronic Illness</td><td id=>" + data.chronic + "</td>";
-    // document.getElementById("tr10").innerHTML = "<td class='table-head-item'>Chronic Medicinea</td><td id=>" + data.chMed + "</td>";
-    // document.getElementById("tr11").innerHTML = "<td class='table-head-item'>Patient History</td><td id=>" + data.history + "</td>";
-    // document.getElementById("tr12").innerHTML = "<td class='table-head-item'>Family Hiaaastory</td><td id=>" + data.family + "</td>";
-    // document.getElementById("tr13").innerHTML = "<td class='table-head-item'>Present Illness</td><td id=>" + data.illness + "</td>";
-    // document.getElementById("tr14").innerHTML = "<td class='table-head-item'>Appoinment Date</td><td id=>" + data.appointment + "</td>";
-    // document.getElementById("tr15").innerHTML = "<td class='table-head-item'>Doctor</td><td id=>" + data.doctor + "</td>";
-    // document.getElementById("tr16").innerHTML = "<td class='table-head-item'>Case Charge</td><td id=>" + data.charge + "</td>";
 
 }
 const fileInput = document.getElementById("patientImage");

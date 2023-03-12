@@ -27,7 +27,7 @@
 .table {
     width: 100%;
     border-collapse: collapse;
-    text-align: center;
+    text-align: left;
 }
 
 .table td,
@@ -162,4 +162,18 @@ input[type="reset"] {
 .nav-link {
     font-size: 11.15px !important;
     border: 1px solid #ccc !important;
+}
+
+.table-head-item,
+.td-center {
+    text-align: center !important;
+}
+
+.image-zoom {
+    z-index: 99;
+    transition: transform ease-in-out 0.3s;
+}
+
+.image-zoom:hover {
+    transform: scale(3);
 }

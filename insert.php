@@ -38,19 +38,21 @@ if(isset($_POST['name'])){
             echo 1;   
         }
         else{
-         echo 0;
+        //  echo $query2;
          // echo JSON_ENCODE($query2);
-            // echo json_encode($query2   );
+            echo json_encode($query2);
         }
 
     } 
     else{
-        echo 0;
+        echo json_encode($query1);
+        
     }
 }
 else{
     // var_dump($_POST['data']);
     // echo "<br>";
-   echo 0;
+    echo json_encode("hello");
+
 }
 ?>

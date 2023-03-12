@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `patientData` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `patientData` ;
 USE `patientData`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
@@ -35,7 +35,7 @@ CREATE TABLE `patient` (
   `PatientPincode` int NOT NULL,
   `PatientCity` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `patientDisease` (
   PRIMARY KEY (`id`),
   KEY `PatientId` (`PatientId`),
   CONSTRAINT `PatientId` FOREIGN KEY (`PatientId`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
