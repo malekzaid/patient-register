@@ -1,8 +1,11 @@
 <?php
 require ('connection.php');
 // echo $_POST['name'];
+        // echo json_encode($_POST['charge']);
+
 
 if(isset($_POST['name'])){
+    $id=$_POST['id'];
     $name=$_POST['name'];
     $age=$_POST['age'];
     $gen=$_POST['gender'];
@@ -20,18 +23,12 @@ if(isset($_POST['name'])){
     $doctor=$_POST['doctor'];
     $charge=$_POST['charge'];
 
-    // $a=array($name,$age,$gen,$ph,$img,$add,$pin,$city,$chronic,$chMed,$history,$family,$appointment,$illness,$doctor,$charge);
-    // header("Content-Type: application/json");
-           
-
-
-    // echo "kkkkk";
-    $query1 = "insert into patient(PatientName,PatientAge,PatientGender,PatientContact,PatientImage,PatientAddress,PatientPincode,PatientCity) values('$name',$age,'$gen','$ph','$img','$add',$pin,'$city')";
-    $result=$conn->query($query1) ;
+    $query1 = "update patient set PatientName='$name',PatientAge=$age,PatientGender='$gen',PatientContact='$ph',PatientImage='$img',PatientAddress='$add',PatientPincode=$pin,PatientCity='$city' where id= $id ";
+      $result=$conn->query($query1) ;
     if($result){
 
         // echo $_POST['Name'];
-        $query2="insert into patientDisease(PatientId,ChronicIllness,ChronicMedicine,PatientHistory,PatientFHistory,PresentIllness,AppointmentDate,CaseCharge,Doctor) values($conn->insert_id,'$chronic','$chMed','$history','$family','$illness','$appointment',$charge,'$doctor')";
+        $query2="update  patientDisease set ChronicIllness='$chronic',ChronicMedicine='$chMed',PatientHistory='$history',PatientFHistory='$family',PresentIllness='$illness',AppointmentDate='$appointment',CaseCharge=$charge,Doctor='$doctor' where PatientId=$id";
         $result2= $conn->query($query2);
         if($result2){
             // echo json_encode($a);
@@ -50,9 +47,8 @@ if(isset($_POST['name'])){
     }
 }
 else{
-    // var_dump($_POST['data']);
-    // echo "<br>";
-    echo json_encode("hello");
-
+    echo 0;
 }
+
+
 ?>

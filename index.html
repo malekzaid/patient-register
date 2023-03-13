@@ -3,24 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-        content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Patient Registration</title>
     <!-- <link rel="stylesheet"
         href="css/font-awesome.min.css"> -->
-    <link rel="stylesheet"
-        href="css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
 
 
-    <link href="css/Datatables/jquery.dataTables.css"
-        rel="stylesheet">
-    <link href="css/Datatables/responsive.dataTables.min.css"
-        rel="stylesheet">
+    <link href="css/Datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="css/Datatables/responsive.dataTables.min.css" rel="stylesheet">
     <!-- <link href="css/Datatables/buttons.dataTables.min.css"
         rel="stylesheet"> -->
     <script src="js/Datatables/jquery.dataTables.js"></script>
@@ -33,14 +27,11 @@
 
     <div class="container mt-5">
         <div class="topbar d-flex justify-content-between align-middle align-items-center">
-            <button class="btn btn-primary mb-3"
-                id="newPatientBtn"
-                onclick="newPatient();">Register New
+            <button class="btn btn-primary mb-3" id="newPatientBtn" onclick="newPatient();">Register New
                 Patient</button>
 
         </div>
-        <table class="table display responsive nowrap "
-            id="patientDetails">
+        <table class="table display responsive nowrap " id="patientDetails">
             <thead class="table-head">
                 <tr>
 
@@ -49,9 +40,9 @@
                     <th class="table-head-item">Patient Gender</th>
                     <th class="table-head-item">Patient Contact</th>
                     <th class="table-head-item">Patient Image</th>
+                    <th class="table-head-item">Patient City:</th>
                     <th class="table-head-item">Patient Address:</th>
                     <th class="table-head-item">Patient Pincode:</th>
-                    <th class="table-head-item">Patient City:</th>
                     <th class="table-head-item">Chronic Illness:</th>
                     <th class="table-head-item">Chronic Medicenes:</th>
                     <th class="table-head-item">Patient History:</th>
@@ -70,112 +61,67 @@
     </div>
 
     <!-- Modal for New Patient-->
-    <div class="modal "
-        id="newPatientModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="newPatientModalLabel"
+    <div class="modal " id="newPatientModal" tabindex="-1" role="dialog" aria-labelledby="newPatientModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog"
-            role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title"
-                        id="newPatientModalLabel">Patient Registration </h2>
-                    <button type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                        onclick="close1()">
-                        <span id="close"
-                            aria-hidden="true">&times;</span>
+                    <h2 class="modal-title" id="newPatientModalLabel">Patient Registration </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close1()">
+                        <span id="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form id="patientForm">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active_tab" id="patientDetailsbtn1">Patient Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link inactive_tab" id="addressDetailsbtn1">Address Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link inactive_tab" id="patientHistorybtn1">Patient History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link inactive_tab" id="patientAppointmentbtn1">Patient Appointment</a>
+                            </li>
+                        </ul>
                         <div class="form-group">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active_tab"
-                                        id="patientDetailsbtn1">Patient Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab"
-                                        id="addressDetailsbtn1">Address Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab"
-                                        id="patientHistorybtn1">Patient History</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab"
-                                        id="patientAppointmentbtn1">Patient Appointment</a>
-                                </li>
-                            </ul>
                             <label for="patientName">Patient Full Name</label>
-                            <input type="text"
-                                name="patientName"
-                                id="patientName"
-                                class="form-control">
-                            <span class="error"
-                                id="patientNameError"></span>
+                            <input type="text" name="patientName" id="patientName" class="form-control">
+                            <span class="error" id="patientNameError"></span>
                         </div>
                         <div class="form-group">
                             <label for="patientAge">Age</label>
-                            <input type="number"
-                                name="patientAge"
-                                id="patientAge"
-                                class="form-control">
-                            <span class="error"
-                                id="patientAgeError"></span>
+                            <input type="number" name="patientAge" id="patientAge" class="form-control">
+                            <span class="error" id="patientAgeError"></span>
                         </div>
                         <div class="form-group">
                             <label for="patientGender">Gender</label>
-                            <input type="Radio"
-                                name="patientGender"
-                                id="patientGenderM"
-                                class="form-Radio"
+                            <input type="Radio" name="patientGender" id="patientGenderM" class="form-Radio"
                                 value="Male">Male
-                            <input type="Radio"
-                                name="patientGender"
-                                id="patientGenderF"
-                                class="form-Radio"
+                            <input type="Radio" name="patientGender" id="patientGenderF" class="form-Radio"
                                 value="Female">Female
-                            <input type="Radio"
-                                name="patientGender"
-                                id="patientGenderO"
-                                class="form-Radio"
+                            <input type="Radio" name="patientGender" id="patientGenderO" class="form-Radio"
                                 value="Other">Other
-                            <br><span class="error"
-                                id="patientGenderError"></span>
+                            <br><span class="error" id="patientGenderError"></span>
                         </div>
                         <div class="form-group">
                             <label for="patientContact">Contact Number</label>
-                            <input type="number"
-                                name="patientContact"
-                                id="patientContact"
-                                class="form-control">
-                            <span class="error"
-                                id="patientContactError"></span>
+                            <input type="number" name="patientContact" id="patientContact" class="form-control">
+                            <span class="error" id="patientContactError"></span>
                         </div>
                         <div class="form-group">
                             <label for="patientImage">Patient Image</label>
-                            <input type="file"
-                                name="patientImage"
-                                id="patientImage"
-                                class="form-control"
+                            <input type="file" name="patientImage" id="patientImage" class="form-control"
                                 accept="image/*">
-                            <span class="error"
-                                id="patientImageError"></span>
+                            <span class="error" id="patientImageError"></span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"
-                                class="btn btn-secondary"
-                                data-dismiss="modal"
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                 onclick="close1()">Close</button>
-                            <button type="button"
-                                class="btn btn-primary"
-                                id="NextBtn1"
+                            <button type="button" class="btn btn-primary" id="NextBtn1"
                                 onclick="ShowModal2()">Next</button>
                         </div>
 
@@ -184,92 +130,56 @@
         </div>
     </div>
     <!-- Modal for New Patient Address-->
-    <div class="modal "
-        id="patientModal2"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="patientModal2Label"
+    <div class="modal " id="patientModal2" tabindex="-1" role="dialog" aria-labelledby="patientModal2Label"
         aria-hidden="true">
-        <div class="modal-dialog"
-            role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title"
-                        id="patientModal2Label">Patient Registration </h2>
-                    <button type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                        onclick="close1()">
-                        <span id="close"
-                            aria-hidden="true">&times;</span>
+                    <h2 class="modal-title" id="patientModal2Label">Patient Registration </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close1()">
+                        <span id="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientDetailsbtn2">Patient Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active_tab" id="addressDetailsbtn2">Address Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientHistorybtn2">Patient History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientAppointmentbtn2">Patient Appointment</a>
+                        </li>
+                    </ul>
                     <div class="form-group">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientDetailsbtn2">Patient Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active_tab"
-                                    id="addressDetailsbtn2">Address Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientHistorybtn2">Patient History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientAppointmentbtn2">Patient Appointment</a>
-                            </li>
-                        </ul>
                         <label for="patientAddress1"> Address Line 1</label>
-                        <input type="text"
-                            name="patientAddress1"
-                            id="patientAddress1"
-                            class="form-control">
-                        <span class="error"
-                            id="patientAddress1Error"></span>
+                        <input type="text" name="patientAddress1" id="patientAddress1" class="form-control">
+                        <span class="error" id="patientAddress1Error"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientAddress2"> Address Line 2</label>
-                        <input type="text"
-                            name="patientAddress2"
-                            id="patientAddress2"
-                            class="form-control">
-                        <span class="error"
-                            id="patientAddress2Error"></span>
+                        <input type="text" name="patientAddress2" id="patientAddress2" class="form-control">
+                        <span class="error" id="patientAddress2Error"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientPincode">Pincode</label>
-                        <input type="number"
-                            name="patientPincode"
-                            id="patientPincode"
-                            class="form-control">
-                        <span class="error"
-                            id="patientPincodeError"></span>
+                        <input type="number" name="patientPincode" id="patientPincode" class="form-control">
+                        <span class="error" id="patientPincodeError"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientCity">City</label>
-                        <input type="text"
-                            name="patientCity"
-                            id="patientCity"
-                            class="form-control">
-                        <span class="error"
-                            id="patientCityError"></span>
+                        <input type="text" name="patientCity" id="patientCity" class="form-control">
+                        <span class="error" id="patientCityError"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             onclick='blockshow(m2,m1)'>Back</button>
-                        <button type="button"
-                            class="btn btn-primary"
-                            id="NextBtn2"
-                            onclick="ShowModal3()">Next</button>
+                        <button type="button" class="btn btn-primary" id="NextBtn2" onclick="ShowModal3()">Next</button>
                     </div>
 
                 </div>
@@ -277,95 +187,59 @@
         </div>
     </div>
     <!-- Modal for New Patient History-->
-    <div class="modal "
-        id="patientModal3"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="patientModal3Label"
+    <div class="modal " id="patientModal3" tabindex="-1" role="dialog" aria-labelledby="patientModal3Label"
         aria-hidden="true">
-        <div class="modal-dialog"
-            role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title"
-                        id="patientModal3Label">Patient Registration </h2>
-                    <button type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                        onclick="close1()">
-                        <span id="close"
-                            aria-hidden="true">&times;</span>
+                    <h2 class="modal-title" id="patientModal3Label">Patient Registration </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close1()">
+                        <span id="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientDetailsbtn3">Patient Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="addressDetailsbtn3" onclick="blockshow(m3,m2)">Address
+                                Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active_tab" id="patientHistorybtn3">Patient History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientAppointmentbtn3">Patient Appointment</a>
+                        </li>
+                    </ul>
                     <div class="form-group">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientDetailsbtn3">Patient Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="addressDetailsbtn3"
-                                    onclick="blockshow(m3,m2)">Address Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active_tab"
-                                    id="patientHistorybtn3">Patient History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientAppointmentbtn3">Patient Appointment</a>
-                            </li>
-                        </ul>
                         <label for="patientChronic">Chronic Illness</label>
-                        <input type="text"
-                            name="patientChronic"
-                            id="patientChronic"
-                            class="form-control">
-                        <span class="error"
-                            id="patientChronicError"></span>
+                        <input type="text" name="patientChronic" id="patientChronic" class="form-control">
+                        <span class="error" id="patientChronicError"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientCMed">Chronic Medicenes</label>
-                        <input type="text"
-                            name="patientCMed"
-                            id="patientCMed"
-                            class="form-control">
-                        <span class="error"
-                            id="patientCMedError"></span>
+                        <input type="text" name="patientCMed" id="patientCMed" class="form-control">
+                        <span class="error" id="patientCMedError"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientHistory">History</label>
-                        <textarea id="patientHistory"
-                            name="patientHistory"
-                            rows="3"
-                            cols="60"
+                        <textarea id="patientHistory" name="patientHistory" rows="3" cols="60"
                             class="form-control"></textarea>
-                        <span class="error"
-                            id="patientHistoryError"></span>
+                        <span class="error" id="patientHistoryError"></span>
                     </div>
                     <div class="form-group">
                         <label for="patientFHistory">Family History</label>
-                        <textarea id="patientFHistory"
-                            name="patientFHistory"
-                            rows="3"
-                            cols="60"
+                        <textarea id="patientFHistory" name="patientFHistory" rows="3" cols="60"
                             class="form-control"></textarea>
-                        <span class="error"
-                            id="patientFHistoryError"></span>
+                        <span class="error" id="patientFHistoryError"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             onclick='blockshow(m3,m2)'>Back</button>
-                        <button type="button"
-                            class="btn btn-primary"
-                            id="NextBtn2"
-                            onclick="ShowModal4()">Next</button>
+                        <button type="button" class="btn btn-primary" id="NextBtn2" onclick="ShowModal4()">Next</button>
                     </div>
 
                 </div>
@@ -373,98 +247,61 @@
         </div>
     </div>
     <!-- Modal for New Patient Appointment/case-->
-    <div class="modal "
-        id="patientModal4"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="patientModal4Label"
+    <div class="modal " id="patientModal4" tabindex="-1" role="dialog" aria-labelledby="patientModal4Label"
         aria-hidden="true">
-        <div class="modal-dialog"
-            role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title"
-                        id="patientModal4Label">Patient Registration </h2>
-                    <button type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                        onclick="close1()">
-                        <span id="close"
-                            aria-hidden="true">&times;</span>
+                    <h2 class="modal-title" id="patientModal4Label">Patient Registration </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close1()">
+                        <span id="close" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientDetailsbtn4">Patient Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="addressDetailsbtn4">Address Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link inactive_tab" id="patientHistorybtn4">Patient History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active_tab" id="patientAppointmentbtn4">Patient Appointment</a>
+                        </li>
+                    </ul>
                     <div class="form-group">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientDetailsbtn4">Patient Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="addressDetailsbtn4">Address Details</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link inactive_tab"
-                                    id="patientHistorybtn4">Patient History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active_tab"
-                                    id="patientAppointmentbtn4">Patient Appointment</a>
-                            </li>
-                        </ul>
                         <label for="PresentIllness"> Present Illness</label>
-                        <input type="text"
-                            name="PresentIllness"
-                            id="PresentIllness"
-                            class="form-control">
-                        <span class="error"
-                            id="PresentIllnessError"></span>
+                        <input type="text" name="PresentIllness" id="PresentIllness" class="form-control">
+                        <span class="error" id="PresentIllnessError"></span>
                     </div>
                     <div class="form-group">
                         <label for="AppointmentDate">Appointment Date</label>
-                        <input type="date"
-                            name="AppointmentDate"
-                            id="AppointmentDate"
-                            class="form-control">
-                        <span class="error"
-                            id="AppointmentDateError"></span>
+                        <input type="date" name="AppointmentDate" id="AppointmentDate" class="form-control">
+                        <span class="error" id="AppointmentDateError"></span>
                     </div>
                     <div class="form-group">
                         <label for="CaseCharge">Case Charge</label>
-                        <input type="number"
-                            name="CaseCharge"
-                            id="CaseCharge"
-                            class="form-control">
-                        <span class="error"
-                            id="CaseChargeError"></span>
+                        <input type="number" name="CaseCharge" id="CaseCharge" class="form-control">
+                        <span class="error" id="CaseChargeError"></span>
                     </div>
                     <div class="form-group">
                         <label for="Doctor">Patient of</label>
-                        <select class="form-control"
-                            name="Doctor"
-                            id="Doctor">
-                            <option disabled
-                                selected
-                                value="">Select Doctor Name</option>
+                        <select class="form-control" name="Doctor" id="Doctor">
+                            <option disabled selected value="">Select Doctor Name</option>
                             <option value="Doctor 1">Doctor 1</option>
                             <option value="Doctor 2">Doctor 2</option>
                             <option value="Doctor 3">Doctor 3</option>
                         </select>
-                        <span class="error"
-                            id="DoctorError"></span>
+                        <span class="error" id="DoctorError"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             onclick='blockshow(m4,m3)'>Back</button>
-                        <button type="button"
-                            class="btn btn-primary"
-                            id="NextBtn2"
-                            onclick="ShowData()">Save</button>
+                        <button type="button" class="btn btn-primary" id="NextBtn2" onclick="ShowData()">Save</button>
                     </div>
                     </form>
                 </div>
@@ -472,11 +309,130 @@
             </div>
         </div>
     </div>
+    <!-- Modal for update data -->
+    <div class="modal " id="UpdateModal" tabindex="-1" role="dialog" aria-labelledby="UpdateModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content mb-5 mt-2">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="UpdateModalLabel">Patient Update </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close1()">
+                        <span id="close" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="patientUpdateForm">
+                        <input type="hidden" name="upatientId" id="upatientId">
+                        <div class="form-group">
+                            <label for="upatientName">Patient Full Name</label>
+                            <input type="text" name="upatientName" id="upatientName" class="form-control">
+                            <span class="error" id="upatientNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientAge">Age</label>
+                            <input type="number" name="upatientAge" id="upatientAge" class="form-control">
+                            <span class="error" id="upatientAgeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientGender">Gender</label>
+                            <input type="Radio" name="upatientGender" id="upatientGenderM" class="form-Radio"
+                                value="Male">Male
+                            <input type="Radio" name="upatientGender" id="upatientGenderF" class="form-Radio"
+                                value="Female">Female
+                            <input type="Radio" name="upatientGender" id="upatientGenderO" class="form-Radio"
+                                value="Other">Other
+                            <br><span class="error" id="upatientGenderError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientContact">Contact Number</label>
+                            <input type="number" name="upatientContact" id="upatientContact" class="form-control">
+                            <span class="error" id="upatientContactError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientImage">Patient Image</label>
+                            <input type="file" name="upatientImage" id="upatientImage" class="form-control"
+                                accept="image/*">
+                            <span class="error" id="upatientImageError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientAddress"> Address </label>
+                            <input type="text" name="upatientAddress" id="upatientAddress" class="form-control">
+                            <span class="error" id="upatientAddressError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientPincode">Pincode</label>
+                            <input type="number" name="upatientPincode" id="upatientPincode" class="form-control">
+                            <span class="error" id="upatientPincodeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientCity">City</label>
+                            <input type="text" name="upatientCity" id="upatientCity" class="form-control">
+                            <span class="error" id="upatientCityError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientChronic">Chronic Illness</label>
+                            <input type="text" name="upatientChronic" id="upatientChronic" class="form-control">
+                            <span class="error" id="upatientChronicError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientCMed">Chronic Medicenes</label>
+                            <input type="text" name="upatientCMed" id="upatientCMed" class="form-control">
+                            <span class="error" id="upatientCMedError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientHistory">History</label>
+                            <textarea id="upatientHistory" name="upatientHistory" rows="3" cols="60"
+                                class="form-control"></textarea>
+                            <span class="error" id="upatientHistoryError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="upatientFHistory">Family History</label>
+                            <textarea id="upatientFHistory" name="upatientFHistory" rows="3" cols="60"
+                                class="form-control"></textarea>
+                            <span class="error" id="upatientFHistoryError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="uPresentIllness"> Present Illness</label>
+                            <input type="text" name="uPresentIllness" id="uPresentIllness" class="form-control">
+                            <span class="error" id="uPresentIllnessError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="uAppointmentDate">Appointment Date</label>
+                            <input type="date" name="uAppointmentDate" id="uAppointmentDate" class="form-control">
+                            <span class="error" id="uAppointmentDateError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="uCaseCharge">Case Charge</label>
+                            <input type="number" name="uCaseCharge" id="uCaseCharge" class="form-control">
+                            <span class="error" id="uCaseChargeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="uDoctor">Patient of</label>
+                            <select class="form-control" name="uDoctor" id="uDoctor">
+                                <option disabled selected value="">Select Doctor Name</option>
+                                <option value="Doctor 1">Doctor 1</option>
+                                <option value="Doctor 2">Doctor 2</option>
+                                <option value="Doctor 3">Doctor 3</option>
+                            </select>
+                            <span class="error" id="uDoctorError"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                onclick="close1()">Close</button>
+                            <button type="button" class="btn btn-primary" id="NextBtn1"
+                                onclick="update()">Update</button>
+                        </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script src="js/warnings.js"></script>
     <script src="js/navclicks.js"></script>
+    <script src="js/upd-del.js"></script>
+
 
 
 </body>

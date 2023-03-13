@@ -1,3 +1,13 @@
+phregex = /^[6-9][0-9]{9}/;
+nameregex = /^[a-zA-Z][a-zA-Z\s]{3,}/;
+ageregex = /^[0-9]{1,2}$/;
+addregex = /^[A-Za-z0-9\s,-]{10,}/;
+pinregex = /^[0-9]{6}$/;
+cityregex = /^[A-Za-z()\s]+$/;
+chregex = /^[A-Za-z0-9\s,]+$/;
+phistoryregex = /^(?=.*\n).*\S.{29,}$/;
+PrIllregex = /^.+$/;
+Caseregex = /^[0-9]+$/;
 // let table = new DataTable('#myTable', {
 //     responsive: true,
 //     scrollX: true,
@@ -10,14 +20,15 @@
 // $(function () {
 //     $('#patientDetails').DataTable();
 // });
-var Imagebin;
+var table = $('#patientDetails').DataTable();
+var Imagebin, uImagebin;
 window.onload = Show();
 //add styles of modal to variables
 m1 = document.getElementById('newPatientModal').style;
 m2 = document.getElementById('patientModal2').style;
 m3 = document.getElementById('patientModal3').style;
 m4 = document.getElementById('patientModal4').style;
-
+mupdate = document.getElementById('UpdateModal').style;
 //called when user clicks close
 function close1() {
     if (confirm("Are you sure you want to cancel patient registeration") == true) {
@@ -26,21 +37,22 @@ function close1() {
         m2.display = "none";
         m3.display = "none";
         m4.display = "none";
+        mupdate.display = "none"
         document.getElementById('patientForm').reset();
+        $(".container").css("opacity", "1");
     }
 }
 
 //when user clicks Register new patient 
 function newPatient() {
     m1.display = "block";
+    $(".container").css("opacity", "0.5");
 }
 
 // After data input in modal 1
 function ShowModal2() {
     pdata = {};
-    phregex = /^[6-9][0-9]{9}/;
-    nameregex = /^[a-zA-Z][a-zA-Z\s]{3,}/;
-    ageregex = /^[0-9]{1,2}$/;
+
     c = 0;
     patientName = document.getElementById("patientName").value;
     patientAge = document.getElementById("patientAge").value;
@@ -92,9 +104,7 @@ function ShowModal3() {
     patientCity = document.getElementById("patientCity").value;
     c = 0;
 
-    addregex = /^[A-Za-z0-9\s,-]{10,}/;
-    pinregex = /^[0-9]{6}$/;
-    cityregex = /^[A-Za-z()\s]+$/;
+
     if (!addregex.test(patientAddress1)) {
         document.getElementById("patientAddress1Error").innerHTML = "Address Line 1 must be of minimum 10 carachters containing alphabets numbers '-' and ','";
         c = 1;
@@ -126,8 +136,7 @@ function ShowModal4() {
     patientHistory = document.getElementById("patientHistory").value;
     patientFHistory = document.getElementById("patientFHistory").value;
     c = 0;
-    chregex = /^[A-Za-z0-9\s,]+$/;
-    phistoryregex = /^(?=.*\n).*\S.{29,}$/;
+
     if (!chregex.test(patientChronic)) {
         document.getElementById("patientChronicError").innerHTML = "Please enter patient's chronic disease and N/A if none";
         c = 1;
@@ -161,8 +170,7 @@ function ShowData() {
     PresentIllness = document.getElementById("PresentIllness").value;
     AppointmentDate = document.getElementById("AppointmentDate").value;
     c = 0;
-    PrIllregex = /^.+$/;
-    Caseregex = /^[0-9]+$/;
+
     if (!PrIllregex.test(PresentIllness)) {
         document.getElementById("PresentIllnessError").innerHTML = "Please Enter Patient's Present Disease/Illness";
         c = 1;
@@ -189,6 +197,7 @@ function ShowData() {
 
         m4.display = "none";
         insertData();
+        $(".container").css("opacity", "1");
         document.getElementById('patientForm').reset();
     }
 }
@@ -219,6 +228,9 @@ function Show() {
         url: "getdata.php",
 
         success: function (n) {
+            if (table) {
+                table.destroy();
+            }
             d = JSON.parse(n);
             patienttable = document.querySelector(".table tbody");
             patienttable.innerHTML = "";
@@ -250,13 +262,13 @@ function Show() {
                 imgtag.src = imageDataURL;
                 td.appendChild(imgtag)
                 td = document.createElement("td");
+                td.textContent = data.PatientCity;
+                tr.appendChild(td);
+                td = document.createElement("td");
                 td.textContent = data.PatientAddress;
                 tr.appendChild(td);
                 td = document.createElement("td");
                 td.textContent = data.PatientPincode;
-                tr.appendChild(td);
-                td = document.createElement("td");
-                td.textContent = data.PatientCity;
                 tr.appendChild(td);
                 td = document.createElement("td");
                 td.textContent = data.ChronicIllness;
@@ -291,20 +303,21 @@ function Show() {
                 btnupdate.className = "btn btnupdate";
                 btnupdate.id = data.PatientId;
                 // btnupdate.onclick = updatePatient;
+                btnupdate.setAttribute("onClick", "updatePatient(" + data.PatientId + ")")
                 tdUpdateButton.appendChild(btnupdate);
 
                 // // create a delete button element
-                // btndelete = document.createElement("button");
-                // btndelete.textContent = "Delete";
-                // btndelete.className = "btn btndelete";
-                // btndelete.id = data.PatientId;
+                btndelete = document.createElement("button");
+                btndelete.textContent = "Delete";
+                btndelete.className = "btn btndelete";
+                btndelete.id = data.PatientId;
                 // btndelete.onclick = deletePatient;
-                // tdUpdateButton.appendChild(btndelete);
-
+                btndelete.setAttribute("onClick", "deletePatient(" + data.PatientId + ")")
+                tdUpdateButton.appendChild(btndelete);
 
                 patienttable.appendChild(tr);
             });
-            $('#patientDetails').DataTable();
+            table = $('#patientDetails').DataTable();
 
         },
         error: function (data) {
